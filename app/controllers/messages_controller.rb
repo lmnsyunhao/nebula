@@ -5,14 +5,30 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.build(message_params)
     chat=Chat.find_by_id(params[:chat_room])
-    redirect_to chats_path, flash: {:warning => '此聊天不存在'} and return if chat.nil?
-    @message.chat=chat
-    if @message.save
-      sync_new @message, scope: chat
-    else
-      redirect_to chat_path(chat), flash: {:warning => '消息发送失败'} and return
+    # redirect_to chats_path, flash: {:warning => '此聊天不存在'} and return if chat.nil?
+    # @message.chat=chat
+    # if @message.save
+    #   sync_new @message, scope: chat
+    # else
+    #   redirect_to chat_path(chat), flash: {:warning => '消息发送失败'} and return
+    # end
+    # redirect_to chat_path(chat)
+
+    respond_to do |format|
+      if chat.nil?
+        format.json {render json: {success: "1", msg: "此聊天不存在"}}
+      else
+        @message.chat=chat
+        if @message.save
+          sync_new @message, scope: chat
+          format.js
+          format.json {render json: {success: "0", msg: "发送成功"}}
+        else
+          format.json {render json: {success: "1", msg: "消息发送失败"}}
+        end
+      end
     end
-    redirect_to chat_path(chat)
+    
   end
 
   def destroy

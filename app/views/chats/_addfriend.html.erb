@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <form class="form-incline" id="search-friend">
-          <div class="md-form input-group">
+          <div class="md-form input-group m-0">
             <%= text_field_tag :query, params[:query], placeholder: "Enter user name", class: 'form-control' %>
             <div class="input-group-append">
               <button type="submit" class="btn btn-md btn-secondary m-0 px-3 waves-effect waves-light" type="button" id="MaterialButton-addon2">搜索</button>
@@ -51,7 +51,7 @@
             $('#result tbody').append("<tr><td class='p-2' style='vertical-align:middle'>" + user.name + "</td><td class='p-2' style='vertical-align:middle'>" + user.sex + "</td><td class='p-2' style='vertical-align:middle'>" + user.email + "</td><td class='p-2' style='vertical-align:middle'><a class='btn btn-success btn-sm p-2' style='vertical-align:middle' data-method='post' href='/friendships?friend_id=" + user.id + "'>添加</a></td></tr>");
           });
         } else {
-          $('#result tbody').append("<text>没有找到符合条件的用户</text>")
+          $('#result tbody').append("<text><br><br>没有找到符合条件的用户</text>")
         }
 
       }, error: function () {
