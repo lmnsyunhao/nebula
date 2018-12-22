@@ -8,16 +8,16 @@
         <div class="col-md-9 text-right">
           <% if current_user.id==@chat.admin_id %>
             <%= link_to destroyall_messages_path(chat_room: @chat.id), method: :delete, class: 'btn btn-warning btn-sm' do %>
-              Clear
+              清空窗口
             <% end %>
 
             <%= link_to chat_path(@chat), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                Delete
+              删除聊天
             <% end %>
 
           <% else %>
             <%= link_to delete_user_chat_path(user_id: current_user.id, id: @chat.id), method: :delete, class: 'btn btn-danger btn-sm' do %>
-                Quit
+                删除聊天
             <% end %>
           <% end %>
 
@@ -27,7 +27,7 @@
   </div>
 
   <div class="card-body card-body-cascade">
-    <div class="card-text custom-scrollbar scrollbar-near-moon" style="max-height: 600px">
+    <div class="card-text custom-scrollbar scrollbar-near-moon" style="max-height: 500px">
 
         <div id="demo-chat-body">
           <div class="nano has-scrollbar custom-scrollbar scrollbar-near-moon" style="height:600px">

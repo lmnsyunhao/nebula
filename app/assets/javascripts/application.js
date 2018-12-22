@@ -10,11 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap.min
-//= require bootstrap.file-input
 //= require sync
-//= require select2.min
-//= require toastr.min
