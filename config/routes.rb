@@ -60,14 +60,6 @@ Rails.application.routes.draw do
       get :index_json
     end
   end
-  resources :salaries
-  resources :performances
-  resources :announcements
-  resources :materials
-  resources :articles
-  resources :departments
-  resources :companynews
-  resources :vacation
 
   resources :messages do
     collection do
