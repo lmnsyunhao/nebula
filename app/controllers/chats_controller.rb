@@ -20,6 +20,9 @@ class ChatsController < ApplicationController
   def delete_user
     user=User.find_by_id(params[:user_id])
     @chat.users.delete(user)
+    if @chat.users.count == 1
+      @chat.users.delete(@chat.users[0][:id])
+    end
     redirect_to chat_path(@chat), flash: {:warning => "#{user.name}已成功退出群聊"}
   end
 
@@ -94,7 +97,7 @@ class ChatsController < ApplicationController
   def correct_user
     if @chat.users.include?(current_user)
     else
-      redirect_to chats_path, flash: {warning: '您没有权限无法进入此聊天室'}
+      redirect_to chats_path, flash: {warning: '聊天已删除'}
     end
   end
 
