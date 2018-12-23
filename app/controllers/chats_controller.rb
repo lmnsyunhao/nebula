@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
   include ChatsHelper
   respond_to :js, :html
   before_action :logged_in
-  before_action :set_chat, except: [:index, :new, :create]
+  before_action :set_chat, except: [:index, :new, :create, :chatroom]
   before_action :correct_user, only: :show
 
   def index
@@ -74,6 +74,30 @@ class ChatsController < ApplicationController
     @users_in_chat= @chat.users-[current_user]
     @friends=current_user.friends+current_user.inverse_friends
     @friends_out_chat=@friends-@chat.users
+  end
+
+  def chatroom
+    friends=current_user.friends+current_user.inverse_friends
+    if friends.count == 0
+      redirect_to chats_path, flash: {:danger => 'no friends'}
+    else
+      if current_user.chats.count == 0
+        user=friends[0]
+        @chat = Chat.new
+        @chat.users<<user
+        @chat.users<<current_user
+        @chat.admin_id=current_user.id
+        @chat.name="#{user.name}-#{current_user.name}"
+        if @chat.save
+          redirect_to chat_path(@chat)
+        else
+          flash[:warning] = "错误,请重试"
+          render chats_path, flash: flash
+        end
+      else
+        redirect_to chat_path(current_user.chats[0])
+      end
+    end
   end
 
   private

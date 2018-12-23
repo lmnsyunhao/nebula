@@ -116,7 +116,7 @@
             <a><div class="mask rgba-white-slight"></div></a>
           </div>
           <div class="card-body card-body-cascade text-center p-0 pt-2">
-            <%= user.name %>
+            <%= truncate(user.name,length: 6) %>
             <% if current_user.id==@chat.admin_id %>
             <%= link_to delete_user_chat_path(user_id: user.id, id: @chat.id), method: :delete, class: 'm-0 mb-2', style:'color:red;' do %>
             <i class="fa fa-remove"></i>

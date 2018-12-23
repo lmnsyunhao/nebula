@@ -83,4 +83,6 @@ Rails.application.routes.draw do
   delete 'sessions/logout' => 'sessions#destroy'
   get 'sessions/logout' => 'sessions#destroy'
 
+  get 'chatroom/' => 'chats#chatroom'
+
 end
