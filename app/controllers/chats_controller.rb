@@ -8,6 +8,7 @@ class ChatsController < ApplicationController
 
   def index
     @friends=current_user.friends+current_user.inverse_friends
+    @user_form = current_user
   end
 
   def add_user

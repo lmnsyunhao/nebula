@@ -3,5 +3,18 @@
           <span class="navbar-text white-text">
           	Nebula - 快捷聊天工具
           </span>
+
+	  <ul class="nav navbar-nav nav-flex-icons ml-auto">
+			<li class="nav-item">
+	    	<%= link_to root_path, class: "nav-link waves-effect waves-light" do %>
+	    		<i class="fa fa-sign-in"></i> <span class="clearfix d-none d-sm-inline-block">Signin</span>
+	    	<% end %>
+			</li>
+			<li class="nav-item">
+	    	<%= link_to new_user_path, class: "nav-link waves-effect waves-light" do %>
+	    		<i class="fa fa-write"></i> <span class="clearfix d-none d-sm-inline-block">Signup</span>
+	    	<% end %>
+			</li>
+	  </ul>
         </nav>
     </header>
