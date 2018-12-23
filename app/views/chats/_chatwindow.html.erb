@@ -45,6 +45,8 @@
     <%#= form_for @new_message, remote: true, id: "msgForm" do |f| %>
       <%#= hidden_field_tag :chat_room, @chat.id %>
       <input type="hidden" name="chat_room" id="chat_room" value="<%= @chat.id %>">
+      <input type="hidden" name="chat_first_user" id="chat_first_user" value="<%= @chat.users[0][:email] %>">
+      <input type="hidden" name="chat_second_user" id="chat_second_user" value="<%= @chat.users[1][:email] %>">
       <!-- <input class="form-control" placeholder="说点什么..." type="text" name="message[body]" id="message_body"/> -->
         <div class="md-form amber-textarea active-amber-textarea mb-0">
           <i class="fa fa-pencil prefix"></i>
@@ -74,46 +76,69 @@
     if ($("#message_body").val() == ""){
       return
     }
-    var msgdata = {
-      "controller": "messages",
-      "action": "create",
-      "message" : {
-        "body" : $("#message_body").val()
-      },
-      "chat_room" : $("#chat_room").val()
-    }
-    $.ajax({
-      type: 'POST',
-      url: '/messages',
-      dataType: "JSON",
-      data: msgdata,
-      success: function(data){
-        if(data.success == "1"){
-          toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-bottom-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-          };
-          toastr['warning'](data.msg);
+    if ($("#chat_first_user").val() == "robot@test.com" || $("#chat_second_user").val() == "robot@test.com" ){
+      bodymsg = $("#message_body").val();
+      targeturl = "http://openapi.tuling123.com/openapi/api/v2";
+      console.log("send");
+      $.ajax({
+        type: 'POST',
+        url: '/sendtorobot',
+        dataType: 'JSON',
+        data: {
+          "body": bodymsg,
+          "targeturl": targeturl,
+          "chat_room": $("#chat_room").val()
+        },
+        success: function(data){
+          $("#message_body").val("");
+        },
+        error: function(data){
+          $("#message_body").val("");
         }
-        $("#message_body").val("");
-      },
-      error: function(data){
-        $("#message_body").val("");
+      })
+    }
+    else{
+      var msgdata = {
+        "controller": "messages",
+        "action": "create",
+        "message" : {
+          "body" : $("#message_body").val()
+        },
+        "chat_room" : $("#chat_room").val()
       }
-    })
+      $.ajax({
+        type: 'POST',
+        url: '/messages',
+        dataType: "JSON",
+        data: msgdata,
+        success: function(data){
+          if(data.success == "1"){
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": true,
+              "positionClass": "toast-bottom-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            };
+            toastr['warning'](data.msg);
+          }
+          $("#message_body").val("");
+        },
+        error: function(data){
+          $("#message_body").val("");
+        }
+      })
+    }
   })
   $("#msgClear").on('click', function(){
     $("#message_body").val("");

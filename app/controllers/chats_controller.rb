@@ -77,7 +77,8 @@ class ChatsController < ApplicationController
     @new_message = Message.new
     @users_in_chat= @chat.users-[current_user]
     @friends=current_user.friends+current_user.inverse_friends
-    @friends_out_chat=@friends-@chat.users
+    robot = User.find_by(email: "robot@test.com")
+    @friends_out_chat=@friends-@chat.users-[robot]
     offlineusers = User.all.where(online: 0)
     @onchatuser = @chat.users-offlineusers
   end

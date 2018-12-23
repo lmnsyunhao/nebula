@@ -46,5 +46,44 @@ module SessionsHelper
     user == current_user
   end
 
+  def post_turing(url, params)
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    if uri.scheme == 'https'
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.use_ssl = true
+    end
+    begin
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request['Content-Type'] = 'application/json;charset=utf-8'
+      request['User-Agent'] = 'Mozilla/5.0 (Windows NT 5.1; rv:29.0) Gecko/20100101 Firefox/29.0'
+      request['X-ACL-TOKEN'] = 'xxx_token'
+      #request.set_form_data(params)
+
+      request.body = {
+          "reqType":0,
+          "perception": {
+              "inputText": {
+                  "text": params
+              },
+          },
+          "userInfo": {
+              "apiKey": "b33d22578a874c58818ae875596d942a",
+              "userId": "344199"
+          }
+      }.to_json
+      response = http.start { |http| http.request(request) }
+      puts response.body.inspect
+      result = JSON.parse response.body
+      cn_reg = /[\u4e00-\u9fa5]{1}/
+      cn_arr=result.to_s.scan(cn_reg).join;
+      return cn_arr
+      # return result
+      #return JSON.parse response.body
+      #return request.body
+    rescue =>err
+      return nil
+    end
+  end
 
 end

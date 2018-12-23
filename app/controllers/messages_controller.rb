@@ -45,6 +45,24 @@ class MessagesController < ApplicationController
     redirect_to chat_path(chat), flash: {info: '聊天记录已清空'}
   end
 
+  def sendtorobot
+    msg = Message.new(body: params[:body], user_id: current_user.id, chat_id: params[:chat_room])
+    msg.save
+    retmsg = post_turing(params[:targeturl], params[:body])
+    retmsg = "" if retmsg.nil?
+    robot = User.find_by(email: "robot@test.com")
+    msg2 = Message.new(body: retmsg, user_id: robot[:id], chat_id: params[:chat_room])
+    msg2.save unless retmsg == ""
+
+    chat=Chat.find_by_id(params[:chat_room])
+    respond_to do |format|
+      sync_new msg, scope: chat
+      sync_new msg2, scope: chat
+      format.js
+      format.json {render json: {ret_msg: retmsg}}
+    end
+  end
+
   private
   def set_message
     @message = Message.find(params[:id])

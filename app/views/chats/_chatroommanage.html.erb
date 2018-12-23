@@ -6,7 +6,9 @@
         <div class="col-md-9 text-right">
 
         <% if current_user.id==@chat.admin_id %>
-
+        <% if @chat.users[0][:email] == "robot@test.com" || @chat.users[1][:email] == "robot@test.com" %>
+        <% else %>
+        
         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#chatroomadduser">
           add
         </button>
@@ -61,6 +63,8 @@
             </div>
           </div>
         </div>
+        <% end %>
+
 
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editroomname">
           edit

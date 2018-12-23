@@ -84,5 +84,6 @@ Rails.application.routes.draw do
   get 'sessions/logout' => 'sessions#destroy'
 
   get 'chatroom/' => 'chats#chatroom'
+  post 'sendtorobot/' => 'messages#sendtorobot'
 
 end
