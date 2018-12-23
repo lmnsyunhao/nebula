@@ -21,18 +21,18 @@
         <hr>
 
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group" role="group" aria-label="First group">
+          <div class="btn-group ml-3" role="group" aria-label="First group">
             <%= link_to user_path(user), class: "p-0" do %>
-            <button type="button" class="btn btn-lg cyan lighten-2">Info</button>
+            <button type="button" class="btn btn-lg cyan lighten-2">资料</button>
             <% end %>
             <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
             <%= hidden_field_tag :users, [user.id] %>
             <%= button_tag(:class => "btn btn-lg blue lighten-2") do %>
-            Chat
+            聊天
             <% end %>
             <% end %>
             <%= link_to friendship_path(user), method: :delete, class: "p-0"  do %>
-            <button type="button" class="btn btn-lg indigo lighten-2">Delete</button>
+            <button type="button" class="btn btn-lg indigo lighten-2">删除</button>
             <% end %>
             <!-- <button type="button" class="btn btn-lg cyan lighten-2">Info</button> -->
             <!-- <button type="button" class="btn btn-lg blue lighten-2">Chat</button> -->
