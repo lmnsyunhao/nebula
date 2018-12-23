@@ -1,4 +1,4 @@
-<div class="card" style="height: 709px;">
+<div class="card" style="height: 725px;">
   <div class="card-body">
     <h4 class="card-title">
       <div class="row">
@@ -106,8 +106,34 @@
     </p>
     <hr>
     <p class="card-text">
-    当前用户:<br>
-    <div class="row custom-scrollbar scrollbar-near-moon" style="height: 240px; max-height: 240px; overflow-y: auto;">
+      在线用户:<br>
+      <div class="row custom-scrollbar scrollbar-near-moon" style="height: 215px; max-height: 215px; overflow-y: auto;">
+        <% @onchatuser.each do |user| %>
+          <div class="col-md-2">
+            <div class="card card-cascade">
+              <div class="view view-cascade overlay">
+                <%= image_tag "user-icon.png", class: "card-img-top", alt: "normal" %>
+                <a><div class="mask rgba-white-slight"></div></a>
+              </div>
+              <div class="card-body card-body-cascade text-center p-0 pt-2">
+                <%= truncate(user.name,length: 6) %>
+                <% if current_user.id==@chat.admin_id %>
+                <% if current_user.id!=user.id %>
+                <%= link_to delete_user_chat_path(user_id: user.id, id: @chat.id), method: :delete, class: 'm-0 mb-2', style:'color:red;' do %>
+                <i class="fa fa-remove"></i>
+                <% end %>
+                <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </p>
+    <hr>
+    <p class="card-text">
+    所有用户:<br>
+    <div class="row custom-scrollbar scrollbar-near-moon" style="height: 215px; max-height: 215px; overflow-y: auto;">
     <% @chat.users.each do |user| %>
       <div class="col-md-2">
         <div class="card card-cascade">
@@ -118,8 +144,10 @@
           <div class="card-body card-body-cascade text-center p-0 pt-2">
             <%= truncate(user.name,length: 6) %>
             <% if current_user.id==@chat.admin_id %>
+            <% if current_user.id!=user.id %>
             <%= link_to delete_user_chat_path(user_id: user.id, id: @chat.id), method: :delete, class: 'm-0 mb-2', style:'color:red;' do %>
             <i class="fa fa-remove"></i>
+            <% end %>
             <% end %>
             <% end %>
           </div>
@@ -127,12 +155,6 @@
       </div>
     <% end %>
     </div>
-    </p>
-    <hr>
-    <p class="card-text">
-      online:<br>
-      <div class="row custom-scrollbar scrollbar-near-moon" style="height: 200px; max-height: 200px; overflow-y: auto;">
-      </div>
     </p>
   </div>
 </div>

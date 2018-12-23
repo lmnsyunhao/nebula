@@ -14,8 +14,11 @@
       </div>
     </h5>
 
-    <ul class="list-group list-group-flush custom-scrollbar scrollbar-near-moon"  style="max-height: 400px; overflow-y: auto">
+    <ul class="list-group list-group-flush custom-scrollbar scrollbar-near-moon"  style="max-height: 500px; overflow-y: auto">
       <ul class="list-group">
+        <% if @onlineusers.count == 0 %>
+          <p class="p-4 card-text text-center">没有什么发现</p>
+        <% end %>
         <% @onlineusers.each do |user| %>
         <li class="list-group-item">
           <div class="row">
