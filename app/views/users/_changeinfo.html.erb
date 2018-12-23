@@ -8,34 +8,52 @@
         </button>
       </div>
 
-<%= form_for(@user_form, url: user_path(current_user), method: :patch) do |f| %>
+      <%= form_for(@user_form, url: user_path(current_user), method: :patch) do |f| %>
       <div class="modal-body pl-5 pr-5">
-  <div class="modal-body mb-0">
-    <%#= hidden_field_tag :users, current_user[:id] %>
+        <div class="modal-body mb-0">
+          <%#= hidden_field_tag :users, current_user[:id] %>
 
-    <div class="md-form form-sm">
-      <!-- <i class="fa fa-user prefix"></i> -->
-      <%= f.label :name, 'Username' %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
+          <div class="md-form form-sm">
+            <!-- <i class="fa fa-user prefix"></i> -->
+            <%= f.label :name, 'Username' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
 
-    <div class="md-form form-sm">
-      <!-- <i class="fa fa-lock prefix"></i> -->
-      <%= f.label :sex, "Gender" %>
-      <%= f.text_field :sex, class: 'form-control' %>
-    </div>
+          <div class="md-form form-sm">
+            <!-- <i class="fa fa-lock prefix"></i> -->
+            <%= f.label :sex, "Gender" %>
+            <%= f.text_field :sex, class: 'form-control' %>
+          </div>
 
-  </div>
+          <div class="md-form form-sm">
+            <!-- <i class="fa fa-lock prefix"></i> -->
+            <%= f.label :phonenumber, "Phone" %>
+            <%= f.text_field :phonenumber, class: 'form-control' %>
+          </div>
+
+          <div class="md-form form-sm">
+            <!-- <i class="fa fa-lock prefix"></i> -->
+            <%= f.label :status, "Status" %>
+            <%= f.text_field :status, class: 'form-control' %>
+          </div>
+
+          <div class="md-form form-sm">
+            <!-- <i class="fa fa-lock prefix"></i> -->
+            <%= f.label :essay, "Essay" %>
+            <%= f.text_field :essay, class: 'form-control' %>
+          </div>
+
+        </div>
       </div>
       <div class="modal-footer">
 
-      <%= button_tag(type: "submit", class: "btn btn-warning waves-effect waves-light") do %>
+        <%= button_tag(type: "submit", class: "btn btn-warning waves-effect waves-light") do %>
         Send
-      <% end %>
+        <% end %>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
       </div>
 
-<% end %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228114534) do
+ActiveRecord::Schema.define(version: 20181223183210) do
 
   create_table "chats", force: :cascade do |t|
     t.string   "name"
@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(version: 20170228114534) do
     t.string   "sex"
     t.string   "phonenumber"
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                                                                                    null: false
+    t.datetime "updated_at",                                                                                                    null: false
+    t.string   "essay",           default: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,\n        adipisci."
+    t.integer  "online",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

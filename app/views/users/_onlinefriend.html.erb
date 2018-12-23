@@ -1,0 +1,51 @@
+<div class="card mt-4">
+  <!-- <h5 class="card-header h5"></h5> -->
+  <div class="card-body pl-5 pr-5 pt-4">
+    <h5 class="card-title">
+      <div class="row p-2">
+        <div class="col-md-6 pt-3">
+          在线好友
+        </div>
+        <div class="col-md-6 text-right pr-4">
+          <%= link_to chats_path, class: 'btn btn-success btn-sm' do %>
+            fresh
+          <% end %>
+        </div>
+      </div>
+    </h5>
+
+    <ul class="list-group list-group-flush custom-scrollbar scrollbar-near-moon"  style="max-height: 400px; overflow-y: auto">
+      <ul class="list-group">
+        <% @onlinefriends.each do |user| %>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-4">
+              <a class="text-white btn-floating">
+                <%= image_tag "user-icon.png", class: "img-sm rounded float-left" %>
+              </a>
+              <%= user.name %>
+            </div>
+            <div class="col-md-8 text-right pt-2">
+              <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
+              <%= hidden_field_tag :users, [user.id] %>
+              <%= button_tag(:class => "btn btn-sm blue") do %>
+              聊天
+              <% end %>
+              <%= link_to friendship_path(user), method: :delete, class: "p-0"  do %>
+              <button type="button" class="btn btn-sm red">删除</button>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </ul>
+
+    <div class="row pr-4 pt-4">
+    	<div class="col-md-12 text-right">
+
+    	</div>
+    </div>
+  </div>
+</div>

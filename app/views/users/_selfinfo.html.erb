@@ -16,16 +16,17 @@
     </div>
     <div class="row">
     	<div class="col-md-12">
-    		<p class="card-text">Essay: <br>
-    			<%= current_user[:essay] %>
-    			 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci.
-    			</p>
+            <p class="card-text">status: <%= current_user[:status] %></p>
+            <p class="card-text">phone: <%= current_user[:phonenumber] %></p>
+    		<p class="card-text">Essay: </p>
+            <p class="card-text"><%= current_user.essay %></p>
+                
     	</div>
     </div>
     <div class="row pr-4 pt-4">
     	<div class="col-md-12 text-right">
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeinfo">change info</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#changeinfo">change info</button>
         <%= render 'users/changeinfo' %>
     		<!-- <a href="" class="btn btn-primary">change info</a> -->
     	</div>

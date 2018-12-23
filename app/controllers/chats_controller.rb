@@ -9,6 +9,10 @@ class ChatsController < ApplicationController
   def index
     @friends=current_user.friends+current_user.inverse_friends
     @user_form = current_user
+    @onlineusers = User.all.where(online: 1)
+    offlineusers = User.all.where(online: 0)
+    @onlinefriends = @friends-offlineusers
+    @onlineusers = @onlineusers-[current_user]-@friends
   end
 
   def add_user
