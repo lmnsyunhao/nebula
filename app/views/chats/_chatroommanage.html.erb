@@ -116,7 +116,7 @@
       <div class="row custom-scrollbar scrollbar-near-moon" style="height: 215px; max-height: 215px; overflow-y: auto;">
         <% @onchatuser.each do |user| %>
           <div class="col-md-2">
-            <div class="card card-cascade">
+            <div class="card card-cascade" style="width: 70px; height: 100px">
               <div class="view view-cascade overlay">
 
         <% if user.picture? %>
@@ -148,7 +148,7 @@
     <div class="row custom-scrollbar scrollbar-near-moon" style="height: 215px; max-height: 215px; overflow-y: auto;">
     <% @chat.users.each do |user| %>
       <div class="col-md-2">
-        <div class="card card-cascade">
+        <div class="card card-cascade" style="width: 70px; height: 100px">
           <div class="view view-cascade overlay">
 
         <% if user.picture? %>

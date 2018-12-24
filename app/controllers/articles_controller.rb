@@ -23,9 +23,10 @@ class ArticlesController < ApplicationController
 		end
     @friends=current_user.friends+current_user.inverse_friends
     @userinfo = User.find_by_id(params[:id])
-    @onlineusers = @userinfo.friends+@userinfo.inverse_friends-[current_user]
+    @onlineusers = @userinfo.friends+@userinfo.inverse_friends-[current_user]-current_user.friends-current_user.inverse_friends
     @selfarticle = @userinfo.articles
     @currentallchat = current_user.chats
+    @onlinefriends = @friends-[@userinfo]-(User.all-@userinfo.friends-@userinfo.inverse_friends)
 	end
 
 	def update

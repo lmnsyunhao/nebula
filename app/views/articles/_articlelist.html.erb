@@ -1,4 +1,4 @@
-<div class="card card-cascade narrower mt-5" id="timeline">
+<div class="card card-cascade narrower <% if current_user.id == @userinfo.id %>mt-5<% end %>" id="timeline">
   <div class="view view-cascade gradient-card-header indigo narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
     <a href="" class="white-text mx-3">
       <% if current_user.id == @userinfo.id %>
