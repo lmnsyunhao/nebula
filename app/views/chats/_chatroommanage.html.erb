@@ -118,7 +118,13 @@
           <div class="col-md-2">
             <div class="card card-cascade">
               <div class="view view-cascade overlay">
-                <%= image_tag "user-icon.png", class: "card-img-top", alt: "normal" %>
+
+        <% if user.picture? %>
+          <%= image_tag user.picture.url, class: "card-img-top", style: "height: 70px; width: 70px", alt: "normal" %>
+        <% else %>
+           <%= image_tag "user-icon.png", class: "card-img-top", style: "height: 70px; width: 70px", alt: "normal" %>
+        <% end %>
+
                 <% if current_user.id==@chat.admin_id %>
                 <% if current_user.id!=user.id %>
                 <%= link_to delete_user_chat_path(user_id: user.id, id: @chat.id), method: :delete, class: 'm-0 mb-2', style:'color:red;position:absolute;top:0%;right:0%' do %>
@@ -144,7 +150,14 @@
       <div class="col-md-2">
         <div class="card card-cascade">
           <div class="view view-cascade overlay">
-            <%= image_tag "user-icon.png", class: "card-img-top", alt: "normal" %>
+
+        <% if user.picture? %>
+          <%= image_tag user.picture.url, class: "card-img-top", style: "height: 70px; width: 70px", alt: "normal" %>
+        <% else %>
+           <%= image_tag "user-icon.png", class: "card-img-top", style: "height: 70px; width: 70px", alt: "normal" %>
+        <% end %>
+
+
             <% if current_user.id==@chat.admin_id %>
             <% if current_user.id!=user.id %>
             <%= link_to delete_user_chat_path(user_id: user.id, id: @chat.id), method: :delete, class: 'm-0 mb-2', style:'color:red;position:absolute;top:0%;right:0%' do %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181224174741) do
+ActiveRecord::Schema.define(version: 20181224204353) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "content"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20181224174741) do
     t.datetime "updated_at",                                                                                                    null: false
     t.string   "essay",           default: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,\n        adipisci."
     t.integer  "online",          default: 0
+    t.string   "picture",         default: "user-icon.png"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

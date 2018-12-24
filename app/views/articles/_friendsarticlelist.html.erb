@@ -16,12 +16,18 @@
         <div class="row">
           <div class="col-md-2">
             <a href="/articles/<%= article.user.id %>">
-              <%= image_tag "user-icon.png", class: "img-sm" %>
+
+        <% if article.user.picture? %>
+          <%= image_tag article.user.picture.url, class: "img-sm" %>
+        <% else %>
+           <%= image_tag "user-icon.png", class: "img-sm" %>
+        <% end %>
+
             </a>
           </div>
           <div class="col-md-8 pl-0">
             <h5 class="card-title">
-              <%= article.user.name %>&nbsp;&nbsp;&nbsp;&nbsp;<%= article.user.email %>
+              <%= article.user.name %>
             </h5>
               <%= %>
             <p class="card-text">

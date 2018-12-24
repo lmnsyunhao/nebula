@@ -25,7 +25,13 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
-            <%= image_tag "user-icon.png", class: "img-sm" %>
+
+        <% if article.user.picture? %>
+          <%= image_tag article.user.picture.url, class: "img-sm" %>
+        <% else %>
+           <%= image_tag "user-icon.png", class: "img-sm" %>
+        <% end %>
+
           </div>
           <div class="col-md-6 pl-0">
             <h5 class="card-title">
@@ -34,7 +40,6 @@
               <% else %>
               <%= @userinfo.name %>
               <% end %>
-              &nbsp;&nbsp;&nbsp;<%= truncate(article.user.email, length: 15) %>
             </h5>
               <%= %>
             <p class="card-text">

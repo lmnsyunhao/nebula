@@ -51,6 +51,10 @@ GEM
       will_paginate
     builder (3.2.3)
     byebug (9.0.6)
+    carrierwave (1.2.2)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -118,6 +122,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
+    mini_magick (4.7.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
@@ -235,11 +240,13 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.7)
   bootstrap-will_paginate
   byebug
+  carrierwave (= 1.2.2)
   coffee-rails (~> 4.1.0)
   faker (~> 1.6.3)
   faye
   jbuilder (~> 2.0)
   jquery-rails
+  mini_magick (= 4.7.0)
   paperclip
   rails (= 4.2.5.2)
   rails_admin (~> 0.8.1)
@@ -256,4 +263,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.17.1
