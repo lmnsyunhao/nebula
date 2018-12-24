@@ -85,8 +85,9 @@ Rails.application.routes.draw do
 
   get 'chatroom/' => 'chats#chatroom'
   post 'sendtorobot/' => 'messages#sendtorobot'
-  post 'createarticle' => 'articles#create'
+  post 'createarticle/' => 'articles#create'
   # delete 'createarticle/:id' => 'articles#delete'
   resources :articles, :only => [:destroy, :show]
+  post 'updatelike/' => 'articles#update'
 
 end

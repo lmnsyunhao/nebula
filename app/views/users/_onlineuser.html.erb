@@ -26,14 +26,17 @@
         <% @onlineusers.each do |user| %>
         <li class="list-group-item">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-2">
               <a class="text-white btn-floating" href="/articles/<%= user.id %>">
                 <%= image_tag "user-icon.png", class: "img-sm rounded float-left" %>
               </a>
-              <%= user.name %>
             </div>
-            <div class="col-md-6 text-right pt-2">
-              <a class='btn btn-info btn-sm' data-method='post' href="/friendships?friend_id=<%= user.id %>">添加</a>
+            <div class="col-md-8 mt-2 pt-1">
+              <%= user.name %>
+              <p class="card-text"><%= truncate(user.essay,lenght:20) %></p>
+            </div>
+            <div class="col-md-2 text-right pt-2">
+              <a class='btn btn-info btn-sm px-2 py-1 mt-3' data-method='post' href="/friendships?friend_id=<%= user.id %>"><i class="fa fa-plus"></i></a>
             </div>
           </div>
         </li>

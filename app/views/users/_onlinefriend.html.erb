@@ -20,21 +20,23 @@
         <% @onlinefriends.each do |user| %>
         <li class="list-group-item">
           <div class="row">
-            <div class="col-md-4">
-
+            <div class="col-md-2">
               <a class="text-white btn-floating" href="/articles/<%= user.id %>">
                 <%= image_tag "user-icon.png", class: "img-sm rounded float-left" %>
               </a>
-              <%= user.name %>
             </div>
-            <div class="col-md-8 text-right pt-2">
+            <div class="col-md-6 mt-2 pt-1">
+              <%= user.name %>
+              <p class="card-text"><%= truncate(user.essay,lenght:20) %></p>
+            </div>
+            <div class="col-md-4 text-right pt-2">
               <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
               <%= hidden_field_tag :users, [user.id] %>
-              <%= button_tag(:class => "btn btn-sm blue") do %>
-              聊天
+              <%= button_tag(:class => "btn btn-sm blue px-2 py-1 mt-3") do %>
+              <i class="fa fa-comment"></i>
               <% end %>
               <%= link_to friendship_path(user), method: :delete, class: "p-0"  do %>
-              <button type="button" class="btn btn-sm red">删除</button>
+              <button type="button" class="btn btn-sm red px-2 py-1 mt-3"><i class="fa fa-times"></i></button>
               <% end %>
               <% end %>
             </div>

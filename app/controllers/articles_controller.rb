@@ -25,6 +25,16 @@ class ArticlesController < ApplicationController
     @userinfo = User.find_by_id(params[:id])
     @onlineusers = @userinfo.friends+@userinfo.inverse_friends-[current_user]
     @selfarticle = @userinfo.articles
+    @currentallchat = current_user.chats
+	end
+
+	def update
+		art = Article.find_by_id(params[:id])
+		cnt = art[:like] + 1;
+		art.update_attributes(like: cnt)
+		respond_to do |format|
+			format.json {render json: {success: cnt}}
+		end
 	end
 
 end

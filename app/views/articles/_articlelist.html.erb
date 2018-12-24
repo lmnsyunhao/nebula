@@ -42,10 +42,10 @@
             </p>
           </div>
           <div class="col-md-4 text-right">
-            <a href=""></a>
+            <button type="button" class="btn btn-sm blue px-2 py-1 mt-3 ilikeit"><i class="fa fa-thumbs-up">&nbsp;&nbsp;<span class="likenumber"><%= article.like %></span><div style="display: none"><%= article.id %></div></i></button>
             <% if current_user.id == article.user.id %>
-            <%= link_to article_path(article.id), method: :delete, class: "p-0"  do %>
-            <button type="button" class="btn btn-sm red">删除</button>
+            <%= link_to article_path(article.id), method: :delete, class: ""  do %>
+            <button type="button" class="btn btn-sm red px-2 py-1 mt-3"><i class="fa fa-times"></i></button>
             <% end %>
             <% end %>
           </div>
@@ -55,6 +55,24 @@
         </p>
       </div>
     <% end %>
+    <script type="text/javascript">
+      $(".ilikeit").on("click", function(){
+        ele = $(this);
+        $.ajax({
+          type: 'POST',
+          url: '/updatelike',
+          dataType: 'JSON',
+          data: {
+            "id" : $(this).find("div").html()
+          },
+          success: function(data){
+            ele.children("i").children("span.likenumber").html(data.success)
+          },
+          error: function(data){
+          }
+        })
+      })
+    </script>
   </div>
 
 </div>

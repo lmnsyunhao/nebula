@@ -42,19 +42,19 @@
         <%# end %>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item px-3">
         <%= link_to chatroom_path, class: "nav-link waves-effect waves-light" do %>
         <i class="fa fa-wechat"></i> <span class="clearfix d-none d-sm-inline-block">聊天室</span>
         <% end %>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item px-3">
         <%= link_to chats_path, class: "nav-link waves-effect waves-light" do %>
         <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block"><%= current_user.name %></span>
         <% end %>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item px-3">
         <%= link_to sessions_logout_path, method: :delete, class: "nav-link waves-effect waves-light" do %>
         <i class="fa fa-sign-out"></i> <span class="clearfix d-none d-sm-inline-block">退出账号</span>
         <% end %>

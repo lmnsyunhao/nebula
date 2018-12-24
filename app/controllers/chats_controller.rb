@@ -15,10 +15,11 @@ class ChatsController < ApplicationController
     @onlineusers = @onlineusers-[current_user]-@friends
     @newarticle = Article.new
     @selfarticle = current_user.articles
-    fa1 = Article.find_by_sql("select articles.*, users.* from users, friendships, articles where users.id = friendships.user_id and friendships.friend_id = articles.user_id and users.id = " + current_user.id.to_s);
-    fa2 = Article.find_by_sql("select articles.*, users.* from users, friendships, articles where users.id = friendships.friend_id and friendships.user_id = articles.user_id and users.id = " + current_user.id.to_s);
+    fa1 = Article.find_by_sql("select articles.*, users.name, users.email from users, friendships, articles where users.id = friendships.user_id and friendships.friend_id = articles.user_id and users.id = " + current_user.id.to_s);
+    fa2 = Article.find_by_sql("select articles.*, users.name, users.email from users, friendships, articles where users.id = friendships.friend_id and friendships.user_id = articles.user_id and users.id = " + current_user.id.to_s);
     @friendsarticle = fa1+fa2
     @userinfo = current_user
+    @currentallchat = current_user.chats
   end
 
   def add_user
@@ -87,6 +88,7 @@ class ChatsController < ApplicationController
     @friends_out_chat=@friends-@chat.users-[robot]
     offlineusers = User.all.where(online: 0)
     @onchatuser = @chat.users-offlineusers
+    @currentallchat = current_user.chats
   end
 
   def chatroom
