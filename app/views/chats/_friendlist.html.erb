@@ -22,9 +22,10 @@
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div class="btn-group ml-3" role="group" aria-label="First group">
 
-            <button type="button" class="btn btn-lg cyan lighten-2">
-              资料
-            </button>
+            <a href="/articles/<%= user.id %>" class="pl-0">
+              <button type="button" class="btn btn-lg cyan lighten-2">动态
+              </button>
+            </a>
             <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
             <%= hidden_field_tag :users, [user.id] %>
             <%= button_tag(:class => "btn btn-lg blue lighten-2") do %>

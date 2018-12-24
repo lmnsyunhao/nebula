@@ -10,7 +10,7 @@
         <% else %>
         
         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#chatroomadduser">
-          add
+          添加
         </button>
         <div class="modal fade" id="chatroomadduser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -29,7 +29,7 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                 <%= f.submit '确定', class: 'btn btn-primary btn-sm' %>
               </div>
               <% end %>
@@ -39,7 +39,7 @@
         </div>
 
         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#transroomadmin">
-          trans
+          房主转移
         </button>
         <div class="modal fade" id="transroomadmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -67,7 +67,7 @@
 
 
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editroomname">
-          edit
+          编辑
         </button>
         <div class="modal fade" id="editroomname" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -99,7 +99,7 @@
         <% end %>
 
           <%= link_to delete_user_chat_path(user_id: current_user.id, id: @chat.id), method: :delete, class: 'btn btn-danger btn-sm m-0' do %>
-              quit
+              退出房间
           <% end %>
         </div>
       </div>
@@ -117,7 +117,7 @@
             <div class="card card-cascade">
               <div class="view view-cascade overlay">
                 <%= image_tag "user-icon.png", class: "card-img-top", alt: "normal" %>
-                <a><div class="mask rgba-white-slight"></div></a>
+                <a href="/articles/<%= user.id %>"><div class="mask rgba-white-slight"></div></a>
               </div>
               <div class="card-body card-body-cascade text-center p-0 pt-2">
                 <%= truncate(user.name,length: 6) %>
@@ -143,7 +143,7 @@
         <div class="card card-cascade">
           <div class="view view-cascade overlay">
             <%= image_tag "user-icon.png", class: "card-img-top", alt: "normal" %>
-            <a><div class="mask rgba-white-slight"></div></a>
+            <a href="/articles/<%= user.id %>"><div class="mask rgba-white-slight"></div></a>
           </div>
           <div class="card-body card-body-cascade text-center p-0 pt-2">
             <%= truncate(user.name,length: 6) %>

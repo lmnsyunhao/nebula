@@ -1,7 +1,7 @@
 <div class="card">
   <!-- <h5 class="card-header h5"></h5> -->
   <div class="card-body p-5">
-    <h5 class="card-title">你好! <%= current_user[:name] %></h5>
+    <h5 class="card-title"><%= @userinfo[:name] %></h5>
     <div class="row">
     	<div class="col-md-6">
 		    <p class="card-text">
@@ -9,26 +9,27 @@
 		    </p>
     	</div>
     	<div class="col-md-6 p-4">
-		    <p class="card-text">Username: <%= current_user[:name] %></p>
-		    <p class="card-text">Email: <%= current_user[:email] %></p>
-		    <p class="card-text">Gender: <%= current_user[:sex] %></p>
+		    <p class="card-text">用户名: <%= @userinfo[:name] %></p>
+		    <p class="card-text">邮箱: <%= @userinfo[:email] %></p>
+		    <p class="card-text">性别: <%= @userinfo[:sex] %></p>
     	</div>
     </div>
     <div class="row">
     	<div class="col-md-12">
-            <p class="card-text">status: <%= current_user[:status] %></p>
-            <p class="card-text">phone: <%= current_user[:phonenumber] %></p>
-    		<p class="card-text">Essay: </p>
-            <p class="card-text"><%= current_user.essay %></p>
+            <p class="card-text">职业: <%= @userinfo[:status] %></p>
+            <p class="card-text">电话: <%= @userinfo[:phonenumber] %></p>
+    		<p class="card-text">个性签名: </p>
+            <p class="card-text"><%= @userinfo.essay %></p>
                 
     	</div>
     </div>
-    <div class="row pr-4 pt-4">
+    <div class="row">
     	<div class="col-md-12 text-right">
-
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#changeinfo">change info</button>
+        <% if current_user.id == @userinfo.id %>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#changeinfo">更改信息</button>
         <%= render 'users/changeinfo' %>
     		<!-- <a href="" class="btn btn-primary">change info</a> -->
+        <% end %>
     	</div>
     </div>
   </div>

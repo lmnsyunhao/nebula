@@ -3,10 +3,12 @@
     <ul class="custom-scrollbar scrollbar-near-moon">
       <li>
         <div class="card">
-          <div class="view overlay p-5">
-            <img class="card-img-top" src="/img/logo.png" alt="Card image cap">
+          <div class="view overlay p-5 m-2">
+            <a href="/chats">
+              <img class="card-img-top" src="/img/logo.png" alt="Card image cap">
+            </a>
           </div>
-          <button type="button" class="btn-floating btn-action btn ml-auto mr-4 mdb-color lighten-3" data-toggle="modal" data-target="#basicExampleModal"><i class="fa fa-plus"></i></button>
+          <button type="button" class="btn-floating btn-action btn ml-auto mr-4 mdb-color lighten-3" data-toggle="modal" data-target="#basicExampleModal"><i class="fa fa-user-plus"></i></button>
 
         </div>
       </li>
@@ -36,18 +38,18 @@
        <%#= link_to chats_path, class: "nav-link waves-effect waves-light" do %>
        <!-- <a class="nav-link waves-effect waves-light" href="#"> -->
         <!-- <i class="fa fa-comments-o"></i> <span class="clearfix d-none d-sm-inline-block">Chatroom</span> -->
-        <!-- </a> -->
+        <!-- </a> fa-user-->
         <%# end %>
       </li>
 
       <li class="nav-item">
         <%= link_to chatroom_path, class: "nav-link waves-effect waves-light" do %>
-        <i class="fa fa-chat"></i> <span class="clearfix d-none d-sm-inline-block">ChatRoom</span>
+        <i class="fa fa-wechat"></i> <span class="clearfix d-none d-sm-inline-block">聊天室</span>
         <% end %>
       </li>
 
       <li class="nav-item">
-        <%= link_to chats_path(current_user), class: "nav-link waves-effect waves-light" do %>
+        <%= link_to chats_path, class: "nav-link waves-effect waves-light" do %>
         <i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block"><%= current_user.name %></span>
         <% end %>
       </li>

@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">change info</h5>
+        <h5 class="modal-title">更改信息</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -15,31 +15,31 @@
 
           <div class="md-form form-sm">
             <!-- <i class="fa fa-user prefix"></i> -->
-            <%= f.label :name, 'Username' %>
+            <%= f.label :name, '用户名' %>
             <%= f.text_field :name, class: 'form-control' %>
           </div>
 
           <div class="md-form form-sm">
             <!-- <i class="fa fa-lock prefix"></i> -->
-            <%= f.label :sex, "Gender" %>
+            <%= f.label :sex, "性别" %>
             <%= f.text_field :sex, class: 'form-control' %>
           </div>
 
           <div class="md-form form-sm">
             <!-- <i class="fa fa-lock prefix"></i> -->
-            <%= f.label :phonenumber, "Phone" %>
+            <%= f.label :phonenumber, "电话" %>
             <%= f.text_field :phonenumber, class: 'form-control' %>
           </div>
 
           <div class="md-form form-sm">
             <!-- <i class="fa fa-lock prefix"></i> -->
-            <%= f.label :status, "Status" %>
+            <%= f.label :status, "职业" %>
             <%= f.text_field :status, class: 'form-control' %>
           </div>
 
           <div class="md-form form-sm">
             <!-- <i class="fa fa-lock prefix"></i> -->
-            <%= f.label :essay, "Essay" %>
+            <%= f.label :essay, "个性签名" %>
             <%= f.text_field :essay, class: 'form-control' %>
           </div>
 
@@ -48,7 +48,7 @@
       <div class="modal-footer">
 
         <%= button_tag(type: "submit", class: "btn btn-warning waves-effect waves-light") do %>
-        Send
+        提交
         <% end %>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
       </div>

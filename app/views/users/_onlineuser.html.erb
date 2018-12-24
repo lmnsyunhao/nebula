@@ -1,19 +1,23 @@
-<div class="card mt-4">
-  <!-- <h5 class="card-header h5"></h5> -->
-  <div class="card-body pl-5 pr-5 pt-4">
-    <h5 class="card-title">
-      <div class="row p-2">
-        <div class="col-md-6 pt-3">
-          发现
-        </div>
-        <div class="col-md-6 text-right pr-4">
-          <%= link_to chats_path, class: 'btn btn-success btn-sm' do %>
-            fresh
-          <% end %>
-        </div>
-      </div>
-    </h5>
+<div class="card card-cascade narrower <% if current_user.id == @userinfo.id %>mt-5<% end %>">
+  <div class="view view-cascade gradient-card-header light-blue lighted-5 narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    <a href="" class="white-text mx-3">
+      <% if current_user.id == @userinfo.id %>
+        发现新朋友
+        <% else %>
+        他的朋友
+        <% end %>
+    </a>
+    <div>
+      <!-- <a href="/chats/#timeline" type="button" class="btn btn-success py-2 px-4">刷新</a> -->
+      <% if current_user.id == @userinfo.id %>
+      <a href="/chats" type="button" class="btn btn-success py-2 px-4">刷新</a>
+      <% else %>
+      <a href="/articles/<%= @userinfo.id %>" type="button" class="btn btn-success py-2 px-4">刷新</a>
+      <% end %>
+    </div>
+  </div>
 
+  <div class="px-3 pb-5">
     <ul class="list-group list-group-flush custom-scrollbar scrollbar-near-moon"  style="max-height: 500px; overflow-y: auto">
       <ul class="list-group">
         <% if @onlineusers.count == 0 %>
@@ -23,7 +27,7 @@
         <li class="list-group-item">
           <div class="row">
             <div class="col-md-6">
-              <a class="text-white btn-floating">
+              <a class="text-white btn-floating" href="/articles/<%= user.id %>">
                 <%= image_tag "user-icon.png", class: "img-sm rounded float-left" %>
               </a>
               <%= user.name %>
@@ -36,11 +40,6 @@
         <% end %>
       </ul>
     </ul>
-
-    <div class="row pr-4 pt-4">
-    	<div class="col-md-12 text-right">
-
-    	</div>
-    </div>
   </div>
+
 </div>

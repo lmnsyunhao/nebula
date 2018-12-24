@@ -1,0 +1,60 @@
+<div class="card card-cascade narrower mt-5" id="timeline">
+  <div class="view view-cascade gradient-card-header indigo narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    <a href="" class="white-text mx-3">
+      <% if current_user.id == @userinfo.id %>
+      时光轴
+      <% else %>
+      他的时光轴
+      <% end %>
+    </a>
+    <div>
+      <% if current_user.id == @userinfo.id %>
+      <a href="/chats/#timeline" type="button" class="btn btn-success py-2 px-4">刷新</a>
+      <% else %>
+      <a href="/articles/<%= @userinfo.id %>/#timeline" type="button" class="btn btn-success py-2 px-4">刷新</a>
+      <% end %>
+      <%#= link_to chats_path, type: "button", class: "btn btn-success py-2 px-4" do %>
+      <!-- 刷新 -->
+      <%# end %>
+    </div>
+  </div>
+
+  <div class="p-4 pb-5">
+    <% @selfarticle.each do |article| %>
+      <hr class="my-0">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <%= image_tag "user-icon.png", class: "img-sm" %>
+          </div>
+          <div class="col-md-6 pl-0">
+            <h5 class="card-title">
+              <% if current_user.id == @userinfo.id %>
+              我
+              <% else %>
+              <%= @userinfo.name %>
+              <% end %>
+              &nbsp;&nbsp;&nbsp;<%= truncate(article.user.email, length: 15) %>
+            </h5>
+              <%= %>
+            <p class="card-text">
+              <%= article.created_at.to_s %>&nbsp;&nbsp;发表了
+            </p>
+          </div>
+          <div class="col-md-4 text-right">
+            <a href=""></a>
+            <% if current_user.id == article.user.id %>
+            <%= link_to article_path(article.id), method: :delete, class: "p-0"  do %>
+            <button type="button" class="btn btn-sm red">删除</button>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <p class="card-text mt-2">
+          <%= article.content %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+</div>

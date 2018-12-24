@@ -13,6 +13,12 @@ class ChatsController < ApplicationController
     offlineusers = User.all.where(online: 0)
     @onlinefriends = @friends-offlineusers
     @onlineusers = @onlineusers-[current_user]-@friends
+    @newarticle = Article.new
+    @selfarticle = current_user.articles
+    fa1 = Article.find_by_sql("select articles.*, users.* from users, friendships, articles where users.id = friendships.user_id and friendships.friend_id = articles.user_id and users.id = " + current_user.id.to_s);
+    fa2 = Article.find_by_sql("select articles.*, users.* from users, friendships, articles where users.id = friendships.friend_id and friendships.user_id = articles.user_id and users.id = " + current_user.id.to_s);
+    @friendsarticle = fa1+fa2
+    @userinfo = current_user
   end
 
   def add_user
@@ -70,7 +76,7 @@ class ChatsController < ApplicationController
 
   def destroy
     @chat.destroy
-    redirect_to chats_path, flash: {:danger => '聊天已删除'}
+    redirect_to chatroom_path, flash: {:danger => '聊天已删除'}
   end
 
   def show
@@ -129,7 +135,7 @@ class ChatsController < ApplicationController
   def correct_user
     if @chat.users.include?(current_user)
     else
-      redirect_to chats_path, flash: {warning: '聊天已删除'}
+      redirect_to chatroom_path, flash: {warning: '聊天已删除'}
     end
   end
 
