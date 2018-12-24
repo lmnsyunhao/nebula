@@ -88,7 +88,7 @@ class ChatsController < ApplicationController
     @friends_out_chat=@friends-@chat.users-[robot]
     offlineusers = User.all.where(online: 0)
     @onchatuser = @chat.users-offlineusers
-    @currentallchat = current_user.chats
+    @currentallchat = current_user.chats-[@chat]
   end
 
   def chatroom
