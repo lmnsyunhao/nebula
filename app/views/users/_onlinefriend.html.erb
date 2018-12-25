@@ -47,19 +47,19 @@
               <%= user.name %>
               <p class="card-text"><%= truncate(user.essay,lenght:20) %></p>
             </div>
-            <% if @userinfo.id == current_user.id %>
             <div class="col-md-4 text-right pt-2">
               <%= form_for Chat.new, url: chats_path, method: :post do |f| %>
               <%= hidden_field_tag :users, [user.id] %>
               <%= button_tag(:class => "btn btn-sm blue px-2 py-1 mt-3") do %>
               <i class="fa fa-comment"></i>
               <% end %>
+            <% if @userinfo.id == current_user.id %>
               <%= link_to friendship_path(user), method: :delete, class: "p-0"  do %>
               <button type="button" class="btn btn-sm red px-2 py-1 mt-3"><i class="fa fa-times"></i></button>
               <% end %>
+            <% end %>
               <% end %>
             </div>
-            <% end %>
           </div>
         </li>
         <% end %>
