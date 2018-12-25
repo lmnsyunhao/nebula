@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181225000406) do
+ActiveRecord::Schema.define(version: 20181225221358) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "content"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20181225000406) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "like",       default: 0
+    t.string   "picture"
   end
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"

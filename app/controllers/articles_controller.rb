@@ -2,11 +2,11 @@ class ArticlesController < ApplicationController
   include SessionsHelper
   include ChatsHelper
 	def create
-		if params[:post][:body] == ""
+ 		if params[:article][:content] == "" && params[:article][:picture].nil?
 			redirect_to chats_path, flash: {"error": "还没有写心情呢"}
 			return
 		end
-		article = Article.new(user_id: current_user.id, content: params[:post][:body])
+ 		article = Article.new(get_params)
 		if article.save
 			redirect_to chats_path, flash: {"success": "发送成功"}
 		else
@@ -44,4 +44,8 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	def get_params
+		params[:article][:user_id] = params[:user_id]
+		params.require(:article).permit(:user_id, :content, :picture)
+	end
 end

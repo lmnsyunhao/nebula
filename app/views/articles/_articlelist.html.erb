@@ -62,6 +62,9 @@
         </div>
         <p class="card-text mt-2">
           <%= article.content %>
+          <% if article.picture? %>
+          <%= image_tag article.picture.url, style: "width:100%", class: "mt-3" %>
+          <% end %>
         </p>
       </div>
     <% end %>
