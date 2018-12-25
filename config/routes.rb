@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   post 'createarticle/' => 'articles#create'
   # delete 'createarticle/:id' => 'articles#delete'
   resources :articles, :only => [:destroy, :show]
+  resources :footsteps, :only => [:create]
   post 'updatelike/' => 'articles#update'
 
 end

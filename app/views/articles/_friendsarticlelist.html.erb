@@ -10,6 +10,11 @@
   </div>
 
   <div class="p-4 pb-5">
+    <% if @friendsarticle.count == 0 %>
+      <p class="px-4 card-text text-center">
+        你的朋友太懒了，没有任何动态
+      </p>
+    <% end %>
     <% @friendsarticle.each do |article| %>
       <hr class="my-0">
       <div class="card-body">

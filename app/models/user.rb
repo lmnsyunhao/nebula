@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+  has_many :footsteps
+  has_many :footstepusers, :through => :footsteps
+  has_many :inverse_footsteps, :class_name => 'Footstep', :foreign_key => "footstepuser_id"
+  has_many :inverse_footstepusers, :through => :inverse_footsteps, :source => :user
+
   mount_uploader :picture, PictureUploader
 
   before_save :downcase_email

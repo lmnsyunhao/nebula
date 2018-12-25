@@ -2,6 +2,10 @@ class ArticlesController < ApplicationController
   include SessionsHelper
   include ChatsHelper
 	def create
+		if params[:post][:body] == ""
+			redirect_to chats_path, flash: {"error": "还没有写心情呢"}
+			return
+		end
 		article = Article.new(user_id: current_user.id, content: params[:post][:body])
 		if article.save
 			redirect_to chats_path, flash: {"success": "发送成功"}
@@ -27,6 +31,8 @@ class ArticlesController < ApplicationController
     @selfarticle = @userinfo.articles
     @currentallchat = current_user.chats
     @onlinefriends = @friends-[@userinfo]-(User.all-@userinfo.friends-@userinfo.inverse_friends)
+    @newfootstep = Footstep.new
+    @footstepall = @userinfo.footsteps
 	end
 
 	def update

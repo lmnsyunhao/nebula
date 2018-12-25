@@ -20,6 +20,7 @@ class ChatsController < ApplicationController
     @friendsarticle = fa1+fa2
     @userinfo = current_user
     @currentallchat = current_user.chats
+    @footstepall = @userinfo.footsteps
   end
 
   def add_user
