@@ -90,5 +90,6 @@ Rails.application.routes.draw do
   resources :articles, :only => [:destroy, :show]
   resources :footsteps, :only => [:create]
   post 'updatelike/' => 'articles#update'
+  get 'developlog/' => 'developlog#index'
 
 end
